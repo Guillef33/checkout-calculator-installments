@@ -6,6 +6,7 @@ import {
   Text,
   ChoiceList,
   Choice,
+  Icon,
   useApi,
   useApplyAttributeChange,
   useInstructions,
@@ -13,6 +14,7 @@ import {
   useCartLines,
   useTotalAmount
 } from "@shopify/ui-extensions-react/checkout";
+import { Heading } from "@shopify/ui-extensions/checkout";
 import { useState } from "react";
 
 // 1. Choose an extension target
@@ -53,58 +55,44 @@ function Extension() {
   // 3. Render a UI
   return (
     <BlockStack border={"dotted"} padding={"tight"}>
-      <Text>Calculadora de Cuotas: </Text>
+      <Heading>Calculadora de Cuotas</Heading>
 
       {/* TOTAL FINAL DEL CARRITO */}
       <BlockStack border="base" padding="base">
-        <Text emphasis="bold">
-          Total Final: ${totalAmount.amount} {totalAmount.currencyCode}
-        </Text>
-        <Checkbox variant="bodyMd" onChange={onCuotasChange}>Total en 3 coutas: ${(totalAmount.amount * 1.2).toFixed(2)} </Checkbox>
-        <Checkbox onChange={onCuotasChange}
-          variant="bodyMd">Total en 6 coutas: ${(totalAmount.amount * 1.5).toFixed(2)} / 6 </Checkbox>
-        <Checkbox onChange={onCuotasChange} variant="bodyMd">Total en 12 coutas: ${(totalAmount.amount * 1.8).toFixed(2)}</Checkbox>
+
+
         <ChoiceList
-          title="Elegí la opción de cuotas"
-          choices={cuotaOptions}
-          selected={selectedCuota}           // estado que guarda la opción seleccionada
-          onChange={(value) => onCuotasChange(value[0])} // value es un array, tomamos el primer elemento
-        />
-        <ChoiceList
-        name="group-single"
-        variant="group"
-        value="ship"
-        onChange={(value) => {
-          console.log(
-            `onChange event with value: ${value}`,
-          );
-        }}
-      >
-        <Choice
-          secondaryContent={
-            <Icon source="truck" />
-          }
-          id="ship"
+          name="group-single"
+          variant="group"
+          value="ship"
+          onChange={onCuotasChange}
         >
-          Ship
-        </Choice>
-        <Choice
-          secondaryContent={
-            <Icon source="marker" />
-          }
-          id="ship-to-pickup-point"
-        >
-          Ship to pickup point
-        </Choice>
-        <Choice
-          secondaryContent={
-            <Icon source="store" />
-          }
-          id="pick-up"
-        >
-          Pick up in store
-        </Choice>
-      </ChoiceList>
+          <Choice
+            secondaryContent={
+              <Icon source="bag" />
+            }
+            id="3"
+          >
+            Total en 3 coutas: ${(totalAmount.amount * 1.2).toFixed(2)}
+          </Choice>
+          <Choice
+            secondaryContent={
+              <Icon source="bag" />
+            }
+            id="6"
+          >
+            Total en 6 coutas: ${(totalAmount.amount * 1.4).toFixed(2)}
+          </Choice>
+          <Choice
+            secondaryContent={
+              <Icon source="bag" />
+            }
+            id="12"
+          >
+            Total en 12 coutas: ${(totalAmount.amount * 1.).toFixed(2)}
+
+          </Choice>
+        </ChoiceList>
       </BlockStack>
       {/* <Checkbox onChange={onCheckboxChange}>
         {translate("iWouldLikeAFreeGiftWithMyOrder")}
