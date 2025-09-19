@@ -49,20 +49,32 @@ function Extension() {
         <Text emphasis="bold">
           Total Final: ${totalAmount.amount} {totalAmount.currencyCode}
         </Text>
-        <Text variant="bodyMd">Total en 3 coutas: ${(totalAmount.amount.toFixed(2)) * 1.3} </Text>
+        <Checkbox variant="bodyMd" onChange={onCuotasChange}>Total en 3 coutas: ${(totalAmount.amount.toFixed(2)) * 1.3} </Checkbox>
         <Text variant="bold">  Cuotas fijas de ${(totalAmount.amount / 3).toFixed(2)} {totalAmount.currencyCode}</Text>
-        <Text variant="bodyMd">Total en 6 coutas: ${(totalAmount.amount.toFixed(2)) * 1.5} / 6 </Text>
-        <Text variant="bold">  ${(totalAmount.amount / 6).toFixed(2)} {totalAmount.currencyCode}</Text>
-        <Text variant="bodyMd">Total en 12 coutas: ${(totalAmount.amount.toFixed(2)) * 1.8} / 12 </Text>
-        <Text variant="bold">  ${(totalAmount.amount / 6).toFixed(2)} {totalAmount.currencyCode}</Text>
+        <Checkbox onChange={onCuotasChange}
+          variant="bodyMd">Total en 6 coutas: ${(totalAmount.amount.toFixed(2)) * 1.5} / 6 </Checkbox>
+        <Text variant="bold" >  ${(totalAmount.amount / 6).toFixed(2)} {totalAmount.currencyCode}</Text>
+        <Checkbox onChange={onCuotasChange} variant="bodyMd">Total en 12 coutas: ${(totalAmount.amount.toFixed(2)) * 1.8} / 12 </Checkbox>
+        <Text variant="bold" >  ${(totalAmount.amount / 6).toFixed(2)} {totalAmount.currencyCode}</Text>
       </BlockStack>
-      <Checkbox onChange={onCheckboxChange}>
+      {/* <Checkbox onChange={onCheckboxChange}>
         {translate("iWouldLikeAFreeGiftWithMyOrder")}
-      </Checkbox>
+      </Checkbox> */}
 
 
     </BlockStack>
   );
+
+  async function onCuotasChange(isChecked) {
+    // Guardamos en atributos de checkout si el cliente eligió cuotas o no
+    const result = await applyAttributeChange({
+      key: "cuotas",
+      type: "updateAttribute",
+      value: isChecked ? "true" : "false",
+    });
+
+    console.log("applyAttributeChange cuotas result", result);
+  }
 
   async function onCheckboxChange(isChecked) {
     // 4. Call the API to modify checkout
