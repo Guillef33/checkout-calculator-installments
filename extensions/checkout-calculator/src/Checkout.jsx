@@ -4,7 +4,8 @@ import {
   BlockStack,
   Checkbox,
   Text,
-  Image,
+  ChoiceList,
+  Choise,
   useApi,
   useApplyAttributeChange,
   useInstructions,
@@ -26,6 +27,12 @@ function Extension() {
 
   const cartLines = useCartLines();
   const totalAmount = useTotalAmount();
+
+  const cuotaOptions = [
+    { label: `Total en 3 cuotas: ${(totalAmount.amount * 1.2).toFixed(2)}`, value: "3" },
+    { label: `Total en 6 cuotas: ${(totalAmount.amount * 1.5).toFixed(2)}`, value: "6" },
+    { label: `Total en 12 cuotas: ${(totalAmount.amount * 1.8).toFixed(2)}`, value: "12" },
+  ];
 
 
   // 2. Check instructions for feature availability, see https://shopify.dev/docs/api/checkout-ui-extensions/apis/cart-instructions for details
@@ -56,6 +63,13 @@ function Extension() {
         {/* <Text variant="bold" >  ${(totalAmount.amount * 1.5 / 6).toFixed(2)} {totalAmount.currencyCode}</Text> */}
         <Checkbox onChange={onCuotasChange} variant="bodyMd">Total en 12 coutas: ${(totalAmount.amount * 1.8).toFixed(2)}</Checkbox>
         {/* <Text variant="bold" >  ${(totalAmount.amount * 1.8 / 12).toFixed(2)} {totalAmount.currencyCode}</Text> */}
+
+        <ChoiceList
+          title="Elegí la opción de cuotas"
+          choices={cuotaOptions}
+          selected={selectedCuota}           // estado que guarda la opción seleccionada
+          onChange={(value) => onCuotasChange(value[0])} // value es un array, tomamos el primer elemento
+        />
       </BlockStack>
       {/* <Checkbox onChange={onCheckboxChange}>
         {translate("iWouldLikeAFreeGiftWithMyOrder")}
