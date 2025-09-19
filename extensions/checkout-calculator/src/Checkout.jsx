@@ -13,6 +13,7 @@ import {
   useCartLines,
   useTotalAmount
 } from "@shopify/ui-extensions-react/checkout";
+import { useState } from "react";
 
 // 1. Choose an extension target
 export default reactExtension("purchase.checkout.block.render", () => (
