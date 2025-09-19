@@ -28,6 +28,9 @@ function Extension() {
   const cartLines = useCartLines();
   const totalAmount = useTotalAmount();
 
+  const [selectedCuota, setSelectedCuota] = useState("3");
+
+
   const cuotaOptions = [
     { label: `Total en 3 cuotas: ${(totalAmount.amount * 1.2).toFixed(2)}`, value: "3" },
     { label: `Total en 6 cuotas: ${(totalAmount.amount * 1.5).toFixed(2)}`, value: "6" },
@@ -79,16 +82,17 @@ function Extension() {
     </BlockStack>
   );
 
-  async function onCuotasChange(isChecked) {
-    // Guardamos en atributos de checkout si el cliente eligió cuotas o no
-    const result = await applyAttributeChange({
+
+  async function onCuotasChange(value) {
+    setSelectedCuota(value);
+    applyAttributeChange({
       key: "cuotas",
       type: "updateAttribute",
-      value: isChecked ? "true" : "false",
+      value,
     });
+    console.log("applyAttributeChange result de cuotas", result);
 
-    console.log("applyAttributeChange cuotas result", result);
-  }
+  };
 
   async function onCheckboxChange(isChecked) {
     // 4. Call the API to modify checkout
