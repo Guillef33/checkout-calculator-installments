@@ -70,6 +70,41 @@ function Extension() {
           selected={selectedCuota}           // estado que guarda la opción seleccionada
           onChange={(value) => onCuotasChange(value[0])} // value es un array, tomamos el primer elemento
         />
+        <ChoiceList
+        name="group-single"
+        variant="group"
+        value="ship"
+        onChange={(value) => {
+          console.log(
+            `onChange event with value: ${value}`,
+          );
+        }}
+      >
+        <Choice
+          secondaryContent={
+            <Icon source="truck" />
+          }
+          id="ship"
+        >
+          Ship
+        </Choice>
+        <Choice
+          secondaryContent={
+            <Icon source="marker" />
+          }
+          id="ship-to-pickup-point"
+        >
+          Ship to pickup point
+        </Choice>
+        <Choice
+          secondaryContent={
+            <Icon source="store" />
+          }
+          id="pick-up"
+        >
+          Pick up in store
+        </Choice>
+      </ChoiceList>
       </BlockStack>
       {/* <Checkbox onChange={onCheckboxChange}>
         {translate("iWouldLikeAFreeGiftWithMyOrder")}
