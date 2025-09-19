@@ -5,7 +5,7 @@ import {
   Checkbox,
   Text,
   ChoiceList,
-  Choise,
+  Choice,
   useApi,
   useApplyAttributeChange,
   useInstructions,
