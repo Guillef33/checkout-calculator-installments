@@ -60,13 +60,9 @@ function Extension() {
           Total Final: ${totalAmount.amount} {totalAmount.currencyCode}
         </Text>
         <Checkbox variant="bodyMd" onChange={onCuotasChange}>Total en 3 coutas: ${(totalAmount.amount * 1.2).toFixed(2)} </Checkbox>
-        {/* <Text variant="bold">  Cuotas fijas de ${(totalAmount.amount * 1.2 / 3).toFixed(2)} {totalAmount.currencyCode}</Text> */}
         <Checkbox onChange={onCuotasChange}
           variant="bodyMd">Total en 6 coutas: ${(totalAmount.amount * 1.5).toFixed(2)} / 6 </Checkbox>
-        {/* <Text variant="bold" >  ${(totalAmount.amount * 1.5 / 6).toFixed(2)} {totalAmount.currencyCode}</Text> */}
         <Checkbox onChange={onCuotasChange} variant="bodyMd">Total en 12 coutas: ${(totalAmount.amount * 1.8).toFixed(2)}</Checkbox>
-        {/* <Text variant="bold" >  ${(totalAmount.amount * 1.8 / 12).toFixed(2)} {totalAmount.currencyCode}</Text> */}
-
         <ChoiceList
           title="Elegí la opción de cuotas"
           choices={cuotaOptions}
