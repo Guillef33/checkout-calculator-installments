@@ -64,7 +64,7 @@ function Extension() {
           Total del carrito: ${totalAmount.amount.toFixed(2)}
         </Text>
         <Text variant="bodyMd" as="p">
-          Selecciona en cuantas cu otas queres pagar tu compra.
+          Selecciona en cuantas cuotas queres pagar tu compra.
         </Text>
         <ChoiceList
           name="group-single"
@@ -78,7 +78,7 @@ function Extension() {
             }
             id="3"
           >
-            En 3 coutas: ${(totalAmount.amount * 1.2).toFixed(2)}
+            3 coutas: ${(totalAmount.amount * 1.2).toFixed(2)}
           </Choice>
           <Choice
             secondaryContent={
@@ -86,7 +86,7 @@ function Extension() {
             }
             id="6"
           >
-            En 6 coutas: ${(totalAmount.amount * 1.4).toFixed(2)}
+            6 coutas: ${(totalAmount.amount * 1.4).toFixed(2)}
           </Choice>
           <Choice
             secondaryContent={
@@ -94,7 +94,7 @@ function Extension() {
             }
             id="12"
           >
-            En 12 coutas: ${(totalAmount.amount * 1.6).toFixed(2)}
+            12 coutas: ${(totalAmount.amount * 1.6).toFixed(2)}
 
           </Choice>
         </ChoiceList>
