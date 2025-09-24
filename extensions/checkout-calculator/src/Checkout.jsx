@@ -60,7 +60,12 @@ function Extension() {
       {/* TOTAL FINAL DEL CARRITO */}
       <BlockStack border="base" padding="base">
 
-
+        <Text variant="headingMd" as="h2">
+          Total del carrito: ${totalAmount.amount.toFixed(2)}
+        </Text>
+        <Text variant="bodyMd" as="p">
+          Selecciona en cuantas cu otas queres pagar tu compra.
+        </Text>
         <ChoiceList
           name="group-single"
           variant="group"
@@ -73,7 +78,7 @@ function Extension() {
             }
             id="3"
           >
-            Total en 3 coutas: ${(totalAmount.amount * 1.2).toFixed(2)}
+            En 3 coutas: ${(totalAmount.amount * 1.2).toFixed(2)}
           </Choice>
           <Choice
             secondaryContent={
@@ -81,7 +86,7 @@ function Extension() {
             }
             id="6"
           >
-            Total en 6 coutas: ${(totalAmount.amount * 1.4).toFixed(2)}
+            En 6 coutas: ${(totalAmount.amount * 1.4).toFixed(2)}
           </Choice>
           <Choice
             secondaryContent={
@@ -89,7 +94,7 @@ function Extension() {
             }
             id="12"
           >
-            Total en 12 coutas: ${(totalAmount.amount * 1.).toFixed(2)}
+            En 12 coutas: ${(totalAmount.amount * 1.6).toFixed(2)}
 
           </Choice>
         </ChoiceList>
